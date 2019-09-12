@@ -186,7 +186,7 @@ OmniDB is designed for easy database management. Here are some features:
 
 ## 2.1- build docker images
 
-docker build -t daq/cechealth-daq-tools-omnidb
+docker build -t daq/cechealth-daq-tools-omnidb .
 
 ## 2.2- run docker 
 
