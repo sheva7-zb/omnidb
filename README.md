@@ -191,7 +191,7 @@ docker build -t daq/cechealth-daq-tools-omnidb
 ## 2.2- run docker 
 
 docker run -it -d -v /localpath/db:/root/.omnidb/omnidb-server -p 18080:8000 -p 25000:25000 daq/cechealth-daq-tools-omnidb
-```
+
 ## 2.3- open on your favorite browser
 
  http://localhost:18080/
