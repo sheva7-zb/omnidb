@@ -184,89 +184,14 @@ OmniDB is designed for easy database management. Here are some features:
 
 # 2- Installation
 
-## 2.1- Installation packages
+## 2.1- build docker images
 
-Just go to [omnidb.org](https://omnidb.org), download the appropriate file for
-your operating system and architecture and install it.
+docker build -t daq/cechealth-daq-tools-omnidb
 
-You can also install from repositories (as root):
+## 2.2- run docker 
 
-## 2.2- Debian / Ubuntu repository
-
-**IMPORTANT**: Currently OmniDB server and PostgreSQL debugger plugin packages
-can be installed from Debian PGDG repository.
-
+docker run -it -d -v /localpath/db:/root/.omnidb/omnidb-server -p 18080:8000 -p 25000:25000 daq/cechealth-daq-tools-omnidb
 ```
-apt install apt-transport-https dirmngr
-echo "deb https://dl.bintray.com/wind39/omnidb-deb debian main" > /etc/apt/sources.list.d/omnidb.list
-apt-key adv --recv-keys 379CE192D401AB61
-apt update
+## 2.3- open on your favorite browser
 
-apt install omnidb-app        # for the app
-```
-
-## 2.3- CentOS 7 / Fedora repository
-
-```
-cat > /etc/yum.repos.d/omnidb.repo <<EOF
-[omnidb]
-name=omnidb
-baseurl=https://dl.bintray.com/wind39/omnidb-rpm
-gpgcheck=0
-repo_gpgcheck=0
-enabled=1
-EOF
-
-yum install omnidb-app        # for the app; or
-yum install omnidb-server     # for the server; or
-yum install omnidb-plugin     # for the plugin
-```
-
-
-# 3- From sources
-
-If your purpose is to use OmniDB, we recommend installing latest packages as
-explained above. But if you are developing for OmniDB, then you can install it
-from sources, with system-wide `pip` or user-wide `PyEnv`:
-
-
-## 3.1- On Debian >= 9 with `pip`
-
-```
-sudo apt install python3-pip
-pip3 install pip --upgrade
-pip3 install -r requirements.txt
-```
-
-## 3.2- On Debian/Ubuntu using `PyEnv`
-
-```
-sudo apt install git make build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev xz-utils
-
-git clone https://github.com/pyenv/pyenv.git ~/.pyenv
-echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bashrc
-echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bashrc
-echo 'eval "$(pyenv init -)"' >> ~/.bashrc
-source ~/.bashrc
-
-pyenv install 3.6.5
-cd OMNIDB_FOLDER
-pyenv local 3.6.5
-
-pip install pip --upgrade
-pip install -r requirements.txt
-```
-
-## 3.3- Cloning OmniDB repo
-
-```
-git clone https://github.com/OmniDB/OmniDB
-```
-
-## 3.4- Running OmniDB from sources
-
-To start OmniDB server, enter into `OmniDB/OmniDB` folder and type:
-
-```
-python omnidb-server.py -c omnidb.conf
-```
+ http://localhost:18080/
